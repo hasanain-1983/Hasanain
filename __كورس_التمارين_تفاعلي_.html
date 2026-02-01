@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>كورس التمارين — خطة 4 أيام + كارديو</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --card2:#0f1730;
+      --text:#e8eefc;
+      --muted:#a9b7da;
+      --accent:#7aa2ff;
+      --good:#35d07f;
+      --warn:#ffce5c;
+      --bad:#ff6b6b;
+      --border:rgba(255,255,255,.08);
+      --shadow: 0 8px 24px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 85% 0%, rgba(122,162,255,.18), transparent 55%),
+                  radial-gradient(800px 500px at 10% 10%, rgba(53,208,127,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    header{padding:24px 16px 12px;max-width:1100px;margin:0 auto}
+    .title{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+    h1{margin:0;font-size:22px}
+    .sub{color:var(--muted);font-size:13px;margin-top:6px}
+    .pillbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start}
+    .pill{
+      background:rgba(122,162,255,.14);
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      display:flex;gap:6px;align-items:center;
+      user-select:none;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 16px 28px}
+    .grid{display:grid;grid-template-columns: 1.15fr .85fr;gap:14px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%), var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 14px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom:1px solid var(--border);
+      background: rgba(0,0,0,.08);
+      flex-wrap:wrap;
+    }
+    .card .hd h2{margin:0;font-size:16px}
+    .card .bd{padding:12px 14px}
+    details{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 45%), var(--card2);
+      margin:10px 0;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumL{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .tag{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    .chev{opacity:.85; transition:transform .2s ease}
+    details[open] .chev{transform:rotate(180deg)}
+    .tbl{width:100%; border-collapse:collapse; font-size:13px}
+    .tbl th, .tbl td{
+      padding:10px 8px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      vertical-align:top;
+    }
+    .tbl th{color:var(--muted); font-weight:600; text-align:right}
+    .ex{display:flex;flex-direction:column;gap:4px}
+    .ex .name{font-weight:650}
+    .ex .meta{color:var(--muted); font-size:12px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:13px;
+      transition:transform .03s ease, background .2s ease;
+    }
+    .btn:active{transform:scale(.99)}
+    .btn.primary{background:rgba(122,162,255,.18)}
+    .btn.good{background:rgba(53,208,127,.14)}
+    .btn.warn{background:rgba(255,206,92,.14)}
+    .btn.bad{background:rgba(255,107,107,.14)}
+    .hint{color:var(--muted); font-size:12px}
+    .sets{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      display:flex;gap:8px;align-items:center;
+    }
+    .chip input{width:16px;height:16px}
+    .kpi{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
+    @media (max-width: 480px){ .kpi{grid-template-columns:1fr} }
+    .kpi .box{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px;
+    }
+    .kpi .box .t{color:var(--muted);font-size:12px}
+    .kpi .box .v{font-size:18px;font-weight:700;margin-top:4px}
+    .progress{
+      margin-top:10px;
+      height:10px;
+      background:rgba(255,255,255,.06);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, rgba(122,162,255,.95), rgba(53,208,127,.95));
+      border-radius:999px;
+      transition:width .25s ease;
+    }
+    .footer{
+      margin-top:14px;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.12);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .small{font-size:12px;color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .toast{
+      position:fixed; left:14px; bottom:14px;
+      background:rgba(0,0,0,.5);
+      border:1px solid var(--border);
+      padding:10px 12px;
+      border-radius:12px;
+      backdrop-filter: blur(8px);
+      box-shadow:var(--shadow);
+      opacity:0; transform: translateY(8px);
+      transition:opacity .2s ease, transform .2s ease;
+      pointer-events:none;
+      max-width:min(420px, calc(100vw - 28px));
+    }
+    .toast.show{opacity:1; transform: translateY(0)}
+    .sep{height:1px;background:rgba(255,255,255,.08);margin:10px 0}
+    .note{
+      border:1px solid rgba(255,206,92,.25);
+      background:rgba(255,206,92,.08);
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:12.5px;
+      color:var(--text);
+    }
+    .note b{color:var(--warn)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <div>
+      <h1>كورس التمارين — 4 أيام (أكتاف / صدر+كيل / ظهر+تراي / رجل+معدة) + جري يوميًا</h1>
+      <div class="sub">نسخة تفاعلية: علّم التمارين والمجاميع كمكتملة ✅ — الحفظ يتم تلقائيًا على جهازك.</div>
+    </div>
+    <div class="pillbar">
+      <div class="pill">🧠 <span>راحة: 60–90 ثانية</span></div>
+      <div class="pill">🔥 <span>إحماء: 10 دقائق</span></div>
+      <div class="pill">🏃‍♂️ <span>جري: 35د | سرعة 3.5 | ارتفاع 0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="grid">
+    <section class="card" id="plan">
+      <div class="hd">
+        <h2>📅 البرنامج</h2>
+        <div class="row">
+          <button class="btn warn" id="collapseAll">طيّ الكل</button>
+          <button class="btn primary" id="expandAll">فتح الكل</button>
+          <button class="btn bad" id="resetAll">إعادة ضبط التحديد</button>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="note"><b>مهم:</b> إذا عندك خشونة ركبة، خلي النزلة “متحكم بيها” وبدون قفل كامل للمفصل، وابتعد عن الألم الحاد.</div>
+
+        <details open data-day="day1">
+          <summary>
+            <div class="sumL"><span class="tag">اليوم 1</span><b>أكتاف</b><span class="small">6 تمارين</span></div>
+            <span class="chev">▼</span>
+          </summary>
+          <div class="bd">
+            <table class="tbl">
+              <thead><tr><th style="width:56%">التمرين</th><th style="width:24%">العدّات/النمط</th><th style="width:20%">تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d1e1"><td><div class="ex"><div class="name">نشر جهاز للجانب — مترادف — جالس</div><div class="meta">استهداف الدالية الجانبية | بدون هز</div></div></td><td class="mono">3 × 10</td><td><div class="sets" data-sets="3"></div></td></tr>
+                <tr data-ex="d1e2"><td><div class="ex"><div class="name">نشر دمبل أمامي — مترادف — واقف — مطرقة</div><div class="meta">إلى مستوى الكتف فقط</div></div></td><td class="mono">3 × 10</td><td><div class="sets" data-sets="3"></div></td></tr>
+                <tr data-ex="d1e3"><td><div class="ex"><div class="name">ضغط سلوب أرنولد دمبل — جالس</div><div class="meta">زد الوزن تدريجيًا</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d1e4"><td><div class="ex"><div class="name">نشر دمبل منحني (خلفي) — عدل</div><div class="meta">للكتف الخلفي</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d1e5"><td><div class="ex"><div class="name">سحب بار عريض للرقبة — واقف</div><div class="meta">يفضل للصدر العلوي إذا يوجع الكتف</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d1e6"><td><div class="ex"><div class="name">شولدر شراگ بكرة أمامي — متشابك</div><div class="meta">ثانية توقف بالأعلى</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details data-day="day2">
+          <summary>
+            <div class="sumL"><span class="tag">اليوم 2</span><b>صدر + كيل (بايسبس)</b><span class="small">4 صدر + 3 كيل</span></div>
+            <span class="chev">▼</span>
+          </summary>
+          <div class="bd">
+            <div class="sep"></div><div class="small">الصدر</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d2e1"><td><div class="ex"><div class="name">بنج مستوي بار وسط + بلوفر دمبل مستوي (سوبرست)</div><div class="meta">تحكم بالنزول</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d2e2"><td><div class="ex"><div class="name">بنج أعلى جهاز</div><div class="meta">مدى حركة كامل</div></div></td><td class="mono">16 • 14 • 12 • 10</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d2e3"><td><div class="ex"><div class="name">بنج أسفل بار عريض + شناو (سوبرست)</div><div class="meta">ثبّت لوح الكتف</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d2e4"><td><div class="ex"><div class="name">جمع أسلاك من الأسفل (Cable Fly Low)</div><div class="meta">ضغط بالمنتصف 1 ثانية</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+
+            <div class="sep"></div><div class="small">الكيل (بايسبس)</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d2e5"><td><div class="ex"><div class="name">كيل دمبل مترادف — واقف</div><div class="meta">مرفق ثابت</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d2e6"><td><div class="ex"><div class="name">كيل جهاز — جالس — زوجي</div><div class="meta">بدون ترجيح</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d2e7"><td><div class="ex"><div class="name">كيل بكرة حبل — واقف</div><div class="meta">عصر بالآخر</div></div></td><td class="mono">12 • 10 • 8 • 6</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details data-day="day3">
+          <summary>
+            <div class="sumL"><span class="tag">اليوم 3</span><b>ظهر + تراي</b><span class="small">6 ظهر + 3 تراي</span></div>
+            <span class="chev">▼</span>
+          </summary>
+          <div class="bd">
+            <div class="small">الظهر</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d3e1"><td><div class="ex"><div class="name">عقله عريض أمامي</div><div class="meta">إذا صعبة: Assist أو مطاط</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e2"><td><div class="ex"><div class="name">سحب بكرة أمامي متقابل — عريض</div><div class="meta">اسحب للصدر</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e3"><td><div class="ex"><div class="name">سحب بكرة متشابك — أمامي</div><div class="meta">كوع باتجاه الجنب</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e4"><td><div class="ex"><div class="name">سحب بكرة أفقي تك — عدل</div><div class="meta">توقف 1 ثانية خلف</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e5"><td><div class="ex"><div class="name">سحب بار منحني — وسط — مقلوب</div><div class="meta">ظهر ثابت</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e6"><td><div class="ex"><div class="name">ديد ليف بار وسط</div><div class="meta">شد كور + تنفس</div></div></td><td class="mono">20 • 15 • 10 • 5</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+
+            <div class="sep"></div><div class="small">التراي</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d3e7"><td><div class="ex"><div class="name">تراي بار وسط أعلى — عدل</div><div class="meta">كوع ثابت</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e8"><td><div class="ex"><div class="name">تراي ليك باك دمبل — زوجي — متك الصدر أعلى</div><div class="meta">بدون ترجيح</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d3e9"><td><div class="ex"><div class="name">تراي بكرة حبل خلف الرأس — واقف</div><div class="meta">تمدد كامل</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details data-day="day4">
+          <summary>
+            <div class="sumL"><span class="tag">اليوم 4</span><b>رجل + معدة</b><span class="small">6 رجل + 4 معدة</span></div>
+            <span class="chev">▼</span>
+          </summary>
+          <div class="bd">
+            <div class="small">الرجل</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d4e1"><td><div class="ex"><div class="name">سيقان أمامي زوجي — عدل</div><div class="meta">لا تقفل الركبة بالأعلى</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e2"><td><div class="ex"><div class="name">دبني سميث — نزلة كاملة — مشط وسط</div><div class="meta">نزول ببطء</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e3"><td><div class="ex"><div class="name">سيقان خلفي — نائم</div><div class="meta">عصر بالآخر</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e4"><td><div class="ex"><div class="name">دفع ماكينة (Leg Press) — عريض + ضيق</div><div class="meta">لا ترفع الحوض</div></div></td><td class="mono">15 • 12 • 10 • 8</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e5"><td><div class="ex"><div class="name">دواخل (Adductors)</div><div class="meta">حركة متحكم بها</div></div></td><td class="mono">5 × 12</td><td><div class="sets" data-sets="5"></div></td></tr>
+                <tr data-ex="d4e6"><td><div class="ex"><div class="name">كولف (سمانة)</div><div class="meta">توقف بالأعلى</div></div></td><td class="mono">4 × 15</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+
+            <div class="sep"></div><div class="small">المعدة</div>
+            <table class="tbl">
+              <thead><tr><th>التمرين</th><th>العدّات/النمط</th><th>تم ✅</th></tr></thead>
+              <tbody>
+                <tr data-ex="d4e7"><td><div class="ex"><div class="name">طحن معدة روماني</div><div class="meta">زفير عند الصعود</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e8"><td><div class="ex"><div class="name">طحن معدة جهاز — عدل</div><div class="meta">بدون شد رقبة</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e9"><td><div class="ex"><div class="name">طحن معدة جهاز — جوانب</div><div class="meta">التفاف بسيط</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+                <tr data-ex="d4e10"><td><div class="ex"><div class="name">رفرفة سيقان نائم (رفع الرجلين)</div><div class="meta">أسفل ظهر ملاصق</div></div></td><td class="mono">4 × 12</td><td><div class="sets" data-sets="4"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details data-day="cardio">
+          <summary>
+            <div class="sumL"><span class="tag">بعد التمرين</span><b>الجري اليومي (Treadmill)</b><span class="small">35 دقيقة</span></div>
+            <span class="chev">▼</span>
+          </summary>
+          <div class="bd">
+            <div class="kpi">
+              <div class="box"><div class="t">الارتفاع</div><div class="v mono">0</div></div>
+              <div class="box"><div class="t">السرعة</div><div class="v mono">3.5</div></div>
+              <div class="box"><div class="t">الوقت</div><div class="v mono">35 دقيقة</div></div>
+              <div class="box"><div class="t">ملاحظة</div><div class="v" style="font-size:13px">تنفس منتظم + لا ترفع الكتف</div></div>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="row">
+              <div>
+                <b>⏱️ مؤقت 35 دقيقة</b>
+                <div class="hint">ابدأ المؤقت، ويمكنك إيقافه/استكماله.</div>
+              </div>
+              <div class="row">
+                <button class="btn good" id="tStart">ابدأ</button>
+                <button class="btn warn" id="tPause">إيقاف</button>
+                <button class="btn bad" id="tReset">تصفير</button>
+              </div>
+            </div>
+            <div class="progress"><div id="tBar"></div></div>
+            <div class="row" style="margin-top:8px">
+              <div class="small">الوقت المتبقي</div>
+              <div class="mono" id="tLeft">35:00</div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <aside class="card">
+      <div class="hd">
+        <h2>📊 لوحة المتابعة</h2>
+        <button class="btn primary" id="markDayDone">علّم يوم كامل كمكتمل</button>
+      </div>
+      <div class="bd">
+        <div class="kpi">
+          <div class="box"><div class="t">المجاميع المكتملة</div><div class="v mono" id="doneSets">0</div></div>
+          <div class="box"><div class="t">إجمالي المجاميع</div><div class="v mono" id="totalSets">0</div></div>
+          <div class="box"><div class="t">نسبة الإنجاز</div><div class="v mono" id="pct">0%</div></div>
+          <div class="box"><div class="t">آخر حفظ</div><div class="v mono" id="lastSave" style="font-size:12px">—</div></div>
+        </div>
+
+        <div class="progress" style="margin-top:12px"><div id="pBar"></div></div>
+
+        <div class="sep"></div>
+
+        <div class="row">
+          <div>
+            <b>⏳ مؤقت الراحة</b>
+            <div class="hint">60 أو 90 ثانية بين المجاميع.</div>
+          </div>
+          <div class="row">
+            <button class="btn" data-rest="60">60ث</button>
+            <button class="btn" data-rest="90">90ث</button>
+            <button class="btn bad" id="rStop">إيقاف</button>
+          </div>
+        </div>
+        <div class="progress"><div id="rBar"></div></div>
+        <div class="row" style="margin-top:8px">
+          <div class="small">الوقت المتبقي</div>
+          <div class="mono" id="rLeft">—</div>
+        </div>
+
+        <div class="footer">
+          <div>💾 الحفظ تلقائي على جهازك — تقدر ترجع وتكمل من نفس المكان.</div>
+          <div class="small">إذا تريد نسخة “يوم-بيوم” منفصلة لكل يوم كرابط مستقل، قلّي.</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const STORAGE_KEY = "workout_course_v1";
+  const toastEl = document.getElementById("toast");
+
+  const toast = (msg) => {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    setTimeout(() => toastEl.classList.remove("show"), 1800);
+  };
+
+  // Build set checkboxes
+  document.querySelectorAll(".sets").forEach(holder => {
+    const n = parseInt(holder.getAttribute("data-sets"), 10) || 0;
+    holder.innerHTML = "";
+    for (let i = 1; i <= n; i++) {
+      const id = `${holder.closest("tr").dataset.ex}_s${i}`;
+      const label = document.createElement("label");
+      label.className = "chip";
+      label.innerHTML = `<input type="checkbox" data-setid="${id}"><span>Set ${i}</span>`;
+      holder.appendChild(label);
+    }
+  });
+
+  const load = () => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+    catch { return {}; }
+  };
+  const save = (state) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    document.getElementById("lastSave").textContent = new Date().toLocaleString("ar-IQ");
+  };
+
+  let state = load();
+
+  // Apply state
+  document.querySelectorAll('input[type="checkbox"][data-setid]').forEach(cb => {
+    const key = cb.dataset.setid;
+    cb.checked = !!state[key];
+    cb.addEventListener("change", () => {
+      state[key] = cb.checked;
+      save(state);
+      updateDash();
+    });
+  });
+
+  const calcTotals = () => {
+    const all = [...document.querySelectorAll('input[type="checkbox"][data-setid]')];
+    const total = all.length;
+    const done = all.filter(x => x.checked).length;
+    return { total, done };
+  };
+
+  const updateDash = () => {
+    const { total, done } = calcTotals();
+    document.getElementById("totalSets").textContent = total;
+    document.getElementById("doneSets").textContent = done;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("pBar").style.width = pct + "%";
+  };
+  updateDash();
+
+  // Expand/collapse
+  document.getElementById("expandAll").addEventListener("click", () => {
+    document.querySelectorAll("details").forEach(d => d.open = true);
+    toast("تم فتح كل الأقسام");
+  });
+  document.getElementById("collapseAll").addEventListener("click", () => {
+    document.querySelectorAll("details").forEach(d => d.open = false);
+    toast("تم طيّ كل الأقسام");
+  });
+
+  // Reset
+  document.getElementById("resetAll").addEventListener("click", () => {
+    if (!confirm("تأكيد: تريد تصفير كل التحديدات؟")) return;
+    state = {};
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('input[type="checkbox"][data-setid]').forEach(cb => cb.checked = false);
+    updateDash();
+    document.getElementById("lastSave").textContent = "—";
+    toast("تمت إعادة الضبط");
+  });
+
+  // Mark a full day done (prefers currently open day)
+  document.getElementById("markDayDone").addEventListener("click", () => {
+    const target =
+      [...document.querySelectorAll("details[open]")]
+        .find(d => d.dataset.day && d.dataset.day !== "cardio")
+      || document.querySelector('details[data-day="day1"]');
+
+    if (!target) return;
+
+    target.querySelectorAll('input[type="checkbox"][data-setid]').forEach(cb => {
+      cb.checked = true;
+      state[cb.dataset.setid] = true;
+    });
+
+    save(state);
+    updateDash();
+    toast("تم تعليم اليوم كمكتمل ✅");
+  });
+
+  // Rest timer
+  let rTimer = null, rLeft = 0, rTotal = 0;
+  const rLeftEl = document.getElementById("rLeft");
+  const rBar = document.getElementById("rBar");
+
+  const rTick = () => {
+    if (rLeft <= 0) {
+      clearInterval(rTimer); rTimer = null;
+      rBar.style.width = "0%";
+      rLeftEl.textContent = "انتهت الراحة ✅";
+      toast("انتهت الراحة ✅");
+      return;
+    }
+    rLeft--;
+    rLeftEl.textContent = rLeft + "ث";
+    rBar.style.width = (rTotal ? (rLeft / rTotal) * 100 : 0) + "%";
+  };
+
+  document.querySelectorAll("[data-rest]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const secs = parseInt(btn.dataset.rest, 10);
+      rTotal = secs; rLeft = secs;
+      if (rTimer) clearInterval(rTimer);
+      rTimer = setInterval(rTick, 1000);
+      rLeftEl.textContent = rLeft + "ث";
+      rBar.style.width = "100%";
+      toast("بدأت الراحة: " + secs + "ث");
+    });
+  });
+
+  document.getElementById("rStop").addEventListener("click", () => {
+    if (rTimer) clearInterval(rTimer);
+    rTimer = null; rLeft = 0; rTotal = 0;
+    rBar.style.width = "0%";
+    rLeftEl.textContent = "—";
+    toast("تم إيقاف مؤقت الراحة");
+  });
+
+  // Treadmill 35-min timer
+  const T_TOTAL = 35 * 60;
+  let tTimer = null;
+  let tLeft = (state.__tLeft != null ? state.__tLeft : T_TOTAL);
+
+  const tLeftEl = document.getElementById("tLeft");
+  const tBar = document.getElementById("tBar");
+
+  const fmt = (s) => {
+    s = Math.max(0, Math.floor(s));
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return String(m).padStart(2, "0") + ":" + String(r).padStart(2, "0");
+  };
+
+  const tRender = () => {
+    tLeftEl.textContent = fmt(tLeft);
+    tBar.style.width = ((tLeft / T_TOTAL) * 100) + "%";
+  };
+
+  const tSave = () => {
+    state.__tLeft = tLeft;
+    save(state);
+  };
+
+  const tTick = () => {
+    if (tLeft <= 0) {
+      clearInterval(tTimer); tTimer = null;
+      tLeft = 0; tRender(); tSave();
+      toast("انتهى الجري ✅");
+      return;
+    }
+    tLeft--;
+    tRender();
+    if (tLeft % 5 === 0) tSave();
+  };
+
+  tRender();
+
+  document.getElementById("tStart").addEventListener("click", () => {
+    if (tTimer) return;
+    tTimer = setInterval(tTick, 1000);
+    toast("بدأ مؤقت الجري");
+  });
+
+  document.getElementById("tPause").addEventListener("click", () => {
+    if (tTimer) clearInterval(tTimer);
+    tTimer = null;
+    tSave();
+    toast("تم إيقاف مؤقت الجري");
+  });
+
+  document.getElementById("tReset").addEventListener("click", () => {
+    if (tTimer) clearInterval(tTimer);
+    tTimer = null;
+    tLeft = T_TOTAL;
+    tRender();
+    tSave();
+    toast("تم تصفير مؤقت الجري");
+  });
+
+  // Show saved indicator
+  if (Object.keys(state).length) {
+    document.getElementById("lastSave").textContent = "محفوظ سابقًا";
+  }
+})();
+</script>
+</body>
+</html>
